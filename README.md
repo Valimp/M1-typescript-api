@@ -4,7 +4,7 @@
 
 ## How to install the project ?
 
-1. Go to GitHub repository :
+1. Go to GitHub repository : [GitHub Repository](https://github.com/Valimp/M1-typescript-api)
 
 2. Clone the project : `git clone https://github.com/Valimp/M1-typescript-api.git`
 
