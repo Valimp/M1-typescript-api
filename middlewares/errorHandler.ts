@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { CustomError } from "../errors/CustomError";
 
+// Description: Middleware to handle errors.
 export function errorHandler(err: Error, req: Request, res: Response, next: NextFunction) {
     if (err instanceof CustomError) {
         res.status(500).json({error: err.errorcode});

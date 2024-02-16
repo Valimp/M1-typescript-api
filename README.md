@@ -49,6 +49,8 @@ Now we can start :
 
 2. Pick one and create your own branch.
 
+3. Please ensure your code is cleaner as possible and use swagger documentation.
+
 4. Please use these prefix for your commits : fix, feat, doc
 
 5. When you fix the issue. You can make a pull request.

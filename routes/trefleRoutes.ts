@@ -3,8 +3,10 @@ import { SearchPlantsController } from '../controllers/searchPlantsController';
 import { API_KEY } from '../const/config';
 const router = express.Router();
 
+// Creating the searchPlantsController
 const searchPlantsController = new SearchPlantsController(API_KEY);
 
+// Get request to /api/species -> searchPlantsController.searchAllSpecies
 router.get('/api/species', (req: Request, res: Response, next: NextFunction) => {
     searchPlantsController.searchAllSpecies(req, res, next);
 });

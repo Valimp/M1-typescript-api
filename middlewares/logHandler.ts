@@ -2,7 +2,6 @@ import { Request, Response, NextFunction } from 'express';
 import logger from '../winstonConfig'
 
 export function logHandler(req: Request, res: Response, next: NextFunction) {
-    // get ip address of the client
     res.on('finish', () => {
         const { statusCode } = res;
         if (statusCode >= 400 && statusCode < 600) {
