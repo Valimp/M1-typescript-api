@@ -29,6 +29,11 @@ app.get('/api/plants/:plant', (req: Request, res: Response, next: NextFunction) 
     searchPlantsController.searchPlants(req, res, next);
 });
 
+// Get request to /api/plants/scientist/:plant -> searchPlantsController.searchPlantsScience
+app.get('/api/plants/scientist/:plant', (req: Request, res: Response, next: NextFunction) => {
+    searchPlantsController.searchPlantsScience(req, res, next);
+});
+
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });

@@ -1,6 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
 import { NextFunction, Request, Response } from 'express';
 import { MinimalPlantsData } from '../interfaces/MinimalPlantsData';
+import { ScientistPlantsData } from '../interfaces/ScientistPlantsData';
 
 export class SearchPlantsController {
 
@@ -10,6 +11,7 @@ export class SearchPlantsController {
         this.API_KEY = apiKey
     }
 
+    // Get request to /api/plants -> searchPlantsController.searchAllPlants
     public async searchAllPlants(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
             const response: AxiosResponse = await axios.get(`https://trefle.io/api/v1/plants?token=${this.API_KEY}`);
@@ -28,6 +30,35 @@ export class SearchPlantsController {
         }
     }
 
+    public async searchPlantsScience(req: Request, res: Response, next: NextFunction): Promise<void> {
+
+        const plant: string = req.params.plant;
+        console.log(plant);
+        
+
+        try {
+            const response: AxiosResponse = await axios.get(`https://trefle.io/api/v1/plants/search?token=${this.API_KEY}&q=${plant}`);
+            
+            const minimalPlantsData: ScientistPlantsData[] = response.data.data.map((plant: any) => {
+                return {
+                    id: plant.id,
+                    common_name: plant.common_name,
+                    scientific_name: plant.scientific_name,
+                    genus: plant.genus,
+                    genus_id: plant.genus_id,
+                    image_url: plant.image_url,
+                    rank: plant.rank,
+                    year: plant.year
+                }
+            }
+            );
+            res.send(minimalPlantsData);
+        } catch (err) {
+            console.log(err);
+        } 
+    }  
+
+    // Get request to /api/plants/:plant -> searchPlantsController.searchPlants
     public async searchPlants(req: Request, res: Response, next: NextFunction): Promise<void> {
 
         const plant: string = req.params.plant;
@@ -48,7 +79,7 @@ export class SearchPlantsController {
             );
             res.send(minimalPlantsData);
         } catch (err) {
-        console.log(err);
+            console.log(err);
         } 
     }     
 }
