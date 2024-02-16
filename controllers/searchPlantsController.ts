@@ -2,6 +2,7 @@ import axios, { AxiosResponse } from 'axios';
 import { NextFunction, Request, Response } from 'express';
 import { MinimalPlantsData } from '../interfaces/MinimalPlantsData';
 import { ScientistPlantsData } from '../interfaces/ScientistPlantsData';
+import { ApiError } from '../errors/ApiError';
 
 export class SearchPlantsController {
 
@@ -25,7 +26,7 @@ export class SearchPlantsController {
             );
             res.send(minimalPlantsData);
         } catch (err) {
-            console.log(err);
+            next(new ApiError("Erreur de l'api trefle.io"));
         }
     };
 
@@ -44,7 +45,7 @@ export class SearchPlantsController {
             );
             res.send(minimalPlantsData);
         } catch (err) {
-            console.log(err);
+            next(new ApiError("Erreur de l'api trefle.io"));
         }
     }
 
@@ -72,7 +73,7 @@ export class SearchPlantsController {
             );
             res.send(minimalPlantsData);
         } catch (err) {
-            console.log(err);
+            next(new ApiError("Erreur de l'api trefle.io"));
         } 
     }  
 
@@ -97,7 +98,7 @@ export class SearchPlantsController {
             );
             res.send(minimalPlantsData);
         } catch (err) {
-            console.log(err);
+            next(new ApiError("Erreur de l'api trefle.io"));
         } 
     }     
 }

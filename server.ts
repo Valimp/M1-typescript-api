@@ -4,6 +4,7 @@ import { PORT, API_KEY } from './const/config';
 
 import { logHandler } from './middlewares/logHandler';
 import { SearchPlantsController } from './controllers/searchPlantsController';
+import { errorHandler } from './middlewares/errorHandler';
 
 const app = express();
 const searchPlantsController = new SearchPlantsController(API_KEY);
@@ -18,6 +19,7 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 app.use(logHandler);
+app.use(errorHandler);
 
 app.get('/api/species', (req: Request, res: Response, next: NextFunction) => {
     searchPlantsController.searchAllSpecies(req, res, next);
