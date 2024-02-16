@@ -2,6 +2,11 @@
 
 ## About the project
 
+Objectives of this api is to learn about plants. 🌱🫶🏻
+There names, scientific names, and more informations. 🔬
+
+And then make theme attractive for most of people. 🧲
+
 ## How to install the project ?
 
 1. Go to GitHub repository : [GitHub Repository](https://github.com/Valimp/M1-typescript-api)
@@ -16,4 +21,4 @@
 
 5. Start nodemon server : `npm start`
 
-6. Congratulation ! 
+6. Congratulation ! 🎇
