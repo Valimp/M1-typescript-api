@@ -19,6 +19,10 @@ app.get('/', (req: Request, res: Response) => {
 
 app.use(logHandler);
 
+app.get('/api/species', (req: Request, res: Response, next: NextFunction) => {
+    searchPlantsController.searchAllSpecies(req, res, next);
+});
+
 // Get request to /api/plants -> searchPlantsController.searchAllPlants
 app.get('/api/plants', (req: Request, res: Response, next: NextFunction) => {
     searchPlantsController.searchAllPlants(req, res, next);

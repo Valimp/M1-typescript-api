@@ -11,6 +11,24 @@ export class SearchPlantsController {
         this.API_KEY = apiKey
     }
 
+    public async searchAllSpecies(req: Request, res: Response, next: NextFunction): Promise<void> {
+        try {
+            const response: AxiosResponse = await axios.get(`https://trefle.io/api/v1/species?token=${this.API_KEY}`);
+            const minimalPlantsData: MinimalPlantsData[] = response.data.data.map((plant: any) => {
+                return {
+                    id: plant.id,
+                    common_name: plant.common_name,
+                    image_url: plant.image_url,
+                    rank: plant.rank
+                }
+            }
+            );
+            res.send(minimalPlantsData);
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
     // Get request to /api/plants -> searchPlantsController.searchAllPlants
     public async searchAllPlants(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
