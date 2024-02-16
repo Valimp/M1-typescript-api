@@ -1,13 +1,17 @@
 import express, { NextFunction, Request, Response } from 'express';
+import swaggerJSDOC from 'swagger-jsdoc';
 import 'dotenv/config';
 import { PORT, API_KEY } from './const/config';
 
 import { logHandler } from './middlewares/logHandler';
 import { SearchPlantsController } from './controllers/searchPlantsController';
 import { errorHandler } from './middlewares/errorHandler';
+import { swaggerOptions } from './swaggerOptions';
+import swaggerUi from 'swagger-ui-express';
 
 const app = express();
 const searchPlantsController = new SearchPlantsController(API_KEY);
+const specs = swaggerJSDOC(swaggerOptions);
 
 // Get request to / -> Hello World
 app.get('/', (req: Request, res: Response) => {
@@ -39,6 +43,8 @@ app.get('/api/plants/:plant', (req: Request, res: Response, next: NextFunction) 
 app.get('/api/plants/scientist/:plant', (req: Request, res: Response, next: NextFunction) => {
     searchPlantsController.searchPlantsScience(req, res, next);
 });
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

@@ -4,6 +4,22 @@ import { MinimalPlantsData } from '../interfaces/MinimalPlantsData';
 import { ScientistPlantsData } from '../interfaces/ScientistPlantsData';
 import { ApiError } from '../errors/ApiError';
 
+
+/**
+ * @swagger
+ * tags:
+ *  name: Plants
+ *  description: The plants managing API
+ */
+
+/**
+ * @swagger
+ * tags:
+ *  name: Species
+ *  description: The species managing API
+ */
+
+
 export class SearchPlantsController {
 
     private API_KEY : string;
@@ -11,6 +27,21 @@ export class SearchPlantsController {
     constructor(apiKey : string) {
         this.API_KEY = apiKey
     }
+
+    /**
+     * @swagger
+     * /api/species:
+     *  get:
+     *     summary: Get all species
+     *     description: Get all species from the trefle.io API
+     *     tags: [Species]   
+     *     responses:
+     *      200:
+     *       description: The list of all species
+     *      400: 
+     *       description: Bad request
+     * 
+     */
 
     public async searchAllSpecies(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
@@ -30,7 +61,22 @@ export class SearchPlantsController {
         }
     };
 
-    // Get request to /api/plants -> searchPlantsController.searchAllPlants
+    
+    /**
+     * @swagger
+     * /api/plants:
+     *  get:
+     *     summary: Get all species
+     *     description: Get all species from the trefle.io API
+     *     tags: [Plants]   
+     *     responses:
+     *      200:
+     *       description: The list of all species
+     *      400: 
+     *       description: Bad request
+     * 
+     */
+
     public async searchAllPlants(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
             const response: AxiosResponse = await axios.get(`https://trefle.io/api/v1/plants?token=${this.API_KEY}`);
@@ -48,6 +94,30 @@ export class SearchPlantsController {
             next(new ApiError("Erreur de l'api trefle.io"));
         }
     }
+
+    /**
+     * @swagger
+     * /api/plants/{plant}:
+     *  get:
+     *     summary: Get all species
+     *     description: Get all species from the trefle.io API
+     *     tags: [Plants]   
+     *     parameters:
+     *      - in: path
+     *        name: plant
+     *        required: true
+     *        description: The plant to search by name, return science data
+     *        schema: 
+     *         type: string
+     *     responses:
+     *      200:
+     *       description: The list of all species
+     *      404:
+     *       description: Not found
+     *      400: 
+     *       description: Bad request
+     * 
+     */
 
     public async searchPlantsScience(req: Request, res: Response, next: NextFunction): Promise<void> {
 
@@ -77,7 +147,32 @@ export class SearchPlantsController {
         } 
     }  
 
-    // Get request to /api/plants/:plant -> searchPlantsController.searchPlants
+    
+    /**
+     * @swagger
+     * /api/plants/scientist/{plant}:
+     *  get:
+     *     summary: Get all species
+     *     description: Get all species from the trefle.io API
+     *     tags: [Plants]   
+     *     parameters:
+     *      - in: path
+     *        name: plant
+     *        required: true
+     *        description: The plant to search by name, return science data
+     *        schema: 
+     *         type: string
+     *     responses:
+     *      200:
+     *       description: The list of all species
+     *      404:
+     *       description: Not found
+     *      400: 
+     *       description: Bad request
+     * 
+     */
+
+
     public async searchPlants(req: Request, res: Response, next: NextFunction): Promise<void> {
 
         const plant: string = req.params.plant;
