@@ -66,12 +66,12 @@ export class SearchPlantsController {
      * @swagger
      * /api/plants:
      *  get:
-     *     summary: Get all species
-     *     description: Get all species from the trefle.io API
+     *     summary: Get all plants
+     *     description: Get all plants from the trefle.io API
      *     tags: [Plants]   
      *     responses:
      *      200:
-     *       description: The list of all species
+     *       description: The list of all plants
      *      400: 
      *       description: Bad request
      * 
@@ -97,10 +97,10 @@ export class SearchPlantsController {
 
     /**
      * @swagger
-     * /api/plants/{plant}:
+     * /api/plants/scientist/{plant}:
      *  get:
-     *     summary: Get all species
-     *     description: Get all species from the trefle.io API
+     *     summary: Gets scientist data for a named plant
+     *     description: Get all species from the trefle.io API - You can test with the value [bean, coconut, carrot]
      *     tags: [Plants]   
      *     parameters:
      *      - in: path
@@ -150,9 +150,9 @@ export class SearchPlantsController {
     
     /**
      * @swagger
-     * /api/plants/scientist/{plant}:
+     * /api/plants/{plant}:
      *  get:
-     *     summary: Get all species
+     *     summary: Get minimal data for a named plant
      *     description: Get all species from the trefle.io API
      *     tags: [Plants]   
      *     parameters:

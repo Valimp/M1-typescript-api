@@ -1,6 +1,6 @@
-# Typescript project - M1 Web Development
+# ☘️ Typescript project - M1 Web Development
 
-## About the project
+## 🔍 About the project
 
 Objectives of this api is to learn about plants. 🌱🫶🏻
 
@@ -8,15 +8,15 @@ There names, scientific names, and more informations. 🔬
 
 And then make theme attractive for most of people. 🧲
 
-## How to install the project ?
+## 💾 How to install the project ?
 
-### Trefle.io API
+### ☘️ Trefle.io API
 
 1. Go to Trefle.io and create an account : [Trefle.io website](https://trefle.io/)
 
 2. Generate and keep your API key.
 
-### GitHub project
+### ☁ GitHub project
 
 1. Go to GitHub repository : [GitHub Repository](https://github.com/Valimp/M1-typescript-api)
 
@@ -34,7 +34,7 @@ And then make theme attractive for most of people. 🧲
 
 8. Congratulation ! 🎇
 
-## How to contribute
+## 🫂 How to contribute
 
 Please, check the api documentation of trefle.io : [Get started](https://docs.trefle.io/docs/guides/getting-started)
 
