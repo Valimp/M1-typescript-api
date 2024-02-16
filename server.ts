@@ -1,7 +1,7 @@
 import express, { NextFunction, Request, Response } from 'express';
 import swaggerJSDOC from 'swagger-jsdoc';
 import 'dotenv/config';
-import { PORT, API_KEY } from './const/config';
+import { PORT, URL, API_KEY } from './const/config';
 
 import { logHandler } from './middlewares/logHandler';
 import { SearchPlantsController } from './controllers/searchPlantsController';
@@ -22,6 +22,8 @@ app.get('/', (req: Request, res: Response) => {
     }
 });
 
+// Middlewares
+app.use(express.json());
 app.use(logHandler);
 app.use(errorHandler);
 
@@ -48,4 +50,5 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
+    console.log(`http://${URL}:${PORT}/api-docs`);
 });

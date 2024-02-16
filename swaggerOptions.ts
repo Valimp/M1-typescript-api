@@ -1,4 +1,5 @@
 import path from 'path';
+import { PORT, URL } from './const/config';
 
 export const swaggerOptions = {
     swaggerDefinition: {
@@ -10,7 +11,7 @@ export const swaggerOptions = {
         },
         servers: [
             {
-                url: 'http://localhost:3000',
+                url: `${URL}:${PORT}`,
                 description: 'Development server',
             }
         ],
