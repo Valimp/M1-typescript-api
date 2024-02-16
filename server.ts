@@ -1,16 +1,20 @@
+// Description: Main file for the server. It contains the routes and the middlewares.
+
+// Importing express, swagger-jsdoc, dotenv, and the config file.
 import express, { NextFunction, Request, Response } from 'express';
 import swaggerJSDOC from 'swagger-jsdoc';
 import 'dotenv/config';
-import { PORT, URL, API_KEY } from './const/config';
+import { PORT, URL } from './const/config';
 
+// Importing the middlewares and the routes.
 import { logHandler } from './middlewares/logHandler';
-import { SearchPlantsController } from './controllers/searchPlantsController';
 import { errorHandler } from './middlewares/errorHandler';
 import { swaggerOptions } from './swaggerOptions';
 import swaggerUi from 'swagger-ui-express';
+const plantRoutes = require('./routes/trefleRoutes');
 
+// Creating the app and the swagger specs.
 const app = express();
-const searchPlantsController = new SearchPlantsController(API_KEY);
 const specs = swaggerJSDOC(swaggerOptions);
 
 // Get request to / -> Hello World
@@ -27,27 +31,13 @@ app.use(express.json());
 app.use(logHandler);
 app.use(errorHandler);
 
-app.get('/api/species', (req: Request, res: Response, next: NextFunction) => {
-    searchPlantsController.searchAllSpecies(req, res, next);
-});
+// Routes
+app.use(plantRoutes);
 
-// Get request to /api/plants -> searchPlantsController.searchAllPlants
-app.get('/api/plants', (req: Request, res: Response, next: NextFunction) => {
-    searchPlantsController.searchAllPlants(req, res, next);
-});
-
-// Get request to /api/plants/:plant -> searchPlantsController.searchPlants
-app.get('/api/plants/:plant', (req: Request, res: Response, next: NextFunction) => {
-    searchPlantsController.searchPlants(req, res, next);
-});
-
-// Get request to /api/plants/scientist/:plant -> searchPlantsController.searchPlantsScience
-app.get('/api/plants/scientist/:plant', (req: Request, res: Response, next: NextFunction) => {
-    searchPlantsController.searchPlantsScience(req, res, next);
-});
-
+// Generate the swagger documentation
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
+// Launch the server
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
     console.log(`http://${URL}:${PORT}/api-docs`);
